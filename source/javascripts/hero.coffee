@@ -88,7 +88,7 @@ class Hero
 
 		# At our starting position on the map,
 		# top center
-		@body.SetPosition(new box2d.b2Vec2( config.WIDTH / 2 / config.SCALE , -@HERO_RADIUS / config.SCALE ))
+		@body.SetPosition(new box2d.b2Vec2( 20 / config.SCALE , 350 / config.SCALE ))
 
 	assignControls: =>
 		# Binds key actions
