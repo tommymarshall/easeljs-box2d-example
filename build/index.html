@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Arcade Game</title>
+	<style>
+	html, body {
+		background: #000;
+		min-height: 100%;
+	}
+	canvas {
+		position: absolute;
+		width: 800px;
+
+		/* Scale and Center align */
+		min-width: 320px;
+		max-width: 100%;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translateX(-50%) translateY(-50%);
+		-moz-transform: translateX(-50%) translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);
+	}
+	canvas#arcade {
+		background: #fff;
+		border-radius: 6px;
+	}
+	button {
+		background: green;
+		border-radius: 6px;
+		border: none;
+		bottom: 0;
+		color: #fff;
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: bold;
+		left: 50%;
+		line-height: 40px;
+		margin-left: -75px;
+		outline-style: none;
+		position: absolute;
+		width: 150px;
+		z-index: 2;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="arcade"></canvas>
+	<canvas id="debug"></canvas>
+	<button id="toggle-debug">Toggle Debug</button>
+
+	<script src="compiled.js"></script>
+</body>
+</html>

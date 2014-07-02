@@ -1,0 +1,39 @@
+{
+  "name": "easeljs-box2d-example",
+  "version": "0.1.1",
+  "browser": {
+    "createjs": "./source/javascripts/vendor/easel.js",
+    "stats": "./source/javascripts/vendor/stats.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "coffeeify"
+    ]
+  },
+  "browserify-shim": {
+    "createjs": {
+      "exports": "createjs"
+    },
+    "stats": {
+      "exports": "Stats"
+    }
+  },
+  "dependencies": {
+    "browser-sync": "~0.8.2",
+    "browserify": "~3.36.0",
+    "browserify-shim": "~3.4.1",
+    "coffeeify": "^0.6.0",
+    "connect": "~2.14.3",
+    "gulp": "~3.6.0",
+    "gulp-changed": "~0.3.0",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-livereload": "~1.2.0",
+    "gulp-notify": "~1.2.4",
+    "gulp-open": "~0.2.8",
+    "gulp-util": "^2.2.14",
+    "pretty-hrtime": "^0.2.1",
+    "vinyl-source-stream": "~0.1.1",
+    "watchify": "^0.10.1"
+  }
+}
