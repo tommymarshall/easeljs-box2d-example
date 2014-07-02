@@ -47,9 +47,12 @@ class Game
 
 	setPlay: =>
 		@play = true
+		createjs.Ticker.setPaused false
 
 	setPaused: =>
 		@play = false
+		createjs.Ticker.setPaused true
+
 	run: =>
 		# Set our Frames Per Second to @fps
 		createjs.Ticker.setFPS @fps
@@ -58,7 +61,7 @@ class Game
 		createjs.Ticker.useRAF = true
 
 		# Fire @update upon each tick event
-		createjs.Ticker.addEventListener 'tick', @update
+		createjs.Ticker.on 'tick', @update
 
 	update: (e) =>
 		if @play

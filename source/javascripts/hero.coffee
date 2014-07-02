@@ -131,6 +131,9 @@ class Hero
 
 	# Fires on each iteration of our Game Loop
 	update: (e) =>
+		# Return if game currently paused
+		return if e.paused
+
 		# Get the current position of our
 		position = @body.GetPosition()
 

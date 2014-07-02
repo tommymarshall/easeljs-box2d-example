@@ -19,7 +19,8 @@ class Stage
 		@stage.addChild entity.view
 
 		# If our entity has an update method, bind
-		# it to our Ticker's tick event
+		# it to our Ticker's tick event and pass
+		# the event to our entity.update handler
 		createjs.Ticker.on 'tick', entity.update if entity.update
 
 	update: (e) =>
