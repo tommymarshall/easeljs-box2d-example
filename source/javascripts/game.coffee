@@ -75,6 +75,9 @@ class Game
 			# same rate as our defined FPS.
 			Reality.world.Step 1/@fps, 10, 10
 
+			# Set our Stage camera to follow our Hero
+			Stage.follow Scene.hero
+
 			# Show Debug drawings if enabled
 			@drawDebug(e) if @showDebug
 
@@ -92,7 +95,7 @@ class Game
 		# Clear the previously drawn objects off the
 		# screen. Note, clears a rectangle of the canvas
 		# with a given x, y, width and height
-		Reality.debug.ctx.clearRect(0, 0, config.WIDTH, config.HEIGHT)
+		Reality.debug.ctx.clearRect(-2000, -4400, 10000, 10000)
 
 		# Get the draw-er instance and set it to Box2D's
 		# SetDebugDraw function

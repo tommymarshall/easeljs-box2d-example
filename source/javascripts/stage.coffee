@@ -14,6 +14,12 @@ class Stage
 		# Disallow sub-pixel positioning (runs faster)
 		@stage.snapToPixelsEnabled = true
 
+	follow: (entity) =>
+		# Get the current positioning of a given entity,
+		# probably our Hero, and offset by 0.3 x 0.6
+		@stage.x = -entity.view.x + config.WIDTH * 0.3
+		@stage.y = -entity.view.y + config.HEIGHT * 0.6
+
 	add: (entity) =>
 		# Adds a given entity's view to the Stage
 		@stage.addChild entity.view
