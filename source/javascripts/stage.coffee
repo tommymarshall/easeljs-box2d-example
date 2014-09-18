@@ -5,6 +5,9 @@ Reality  = require './reality'
 
 class Stage
 	constructor: ->
+		# Array of bodies currently on stage
+		@bodies = {}
+
 		@createStage()
 
 	createStage: =>
@@ -20,9 +23,14 @@ class Stage
 		@stage.x = -entity.view.x + config.WIDTH * 0.3
 		@stage.y = -entity.view.y + config.HEIGHT * 0.6
 
+	remove: (id) =>
+		if @bodies[id] then @stage.removeChild @bodies[id].view
+		delete @bodies[id]
+
 	add: (entity) =>
 		# Adds a given entity's view to the Stage
 		@stage.addChild entity.view
+		@bodies[entity.options.id] = entity
 
 		# If our entity has an update method, bind
 		# it to our Ticker's tick event and pass

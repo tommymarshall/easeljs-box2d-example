@@ -445,14 +445,16 @@ this._color(w.color,this.m_fillAlpha);A.arc(p,B,K*U,0,Math.PI*2,true);A.moveTo(p
 K.moveTo(G.position.x*y,G.position.y*y);K.lineTo((G.position.x+this.m_xformScale*G.R.col1.x)*y,(G.position.y+this.m_xformScale*G.R.col1.y)*y);K.strokeStyle=this._color(65280,this.m_alpha);K.moveTo(G.position.x*y,G.position.y*y);K.lineTo((G.position.x+this.m_xformScale*G.R.col2.x)*y,(G.position.y+this.m_xformScale*G.R.col2.y)*y);K.closePath();K.stroke()}})();var i;for(i=0;i<Box2D.postDefs.length;++i)Box2D.postDefs[i]();delete Box2D.postDefs;
 
 module.exports = {
-	b2Vec2: Box2D.Common.Math.b2Vec2,
-	b2BodyDef: Box2D.Dynamics.b2BodyDef,
-	b2Body: Box2D.Dynamics.b2Body,
-	b2FixtureDef: Box2D.Dynamics.b2FixtureDef,
-	b2Fixture: Box2D.Dynamics.b2Fixture,
-	b2World: Box2D.Dynamics.b2World,
-	b2MassData: Box2D.Collision.Shapes.b2MassData,
-	b2PolygonShape: Box2D.Collision.Shapes.b2PolygonShape,
-	b2CircleShape: Box2D.Collision.Shapes.b2CircleShape,
-	b2DebugDraw: Box2D.Dynamics.b2DebugDraw
+    b2BodyDef: Box2D.Dynamics.b2BodyDef,
+    b2CircleShape: Box2D.Collision.Shapes.b2CircleShape,
+    b2ContactListener: Box2D.Dynamics.b2ContactListener,
+    b2DebugDraw: Box2D.Dynamics.b2DebugDraw,
+    b2Fixture: Box2D.Dynamics.b2Fixture,
+    b2FixtureDef: Box2D.Dynamics.b2FixtureDef,
+    b2MassData: Box2D.Collision.Shapes.b2MassData,
+    b2PolygonShape: Box2D.Collision.Shapes.b2PolygonShape,
+    b2World: Box2D.Dynamics.b2World,
+    b2Body: Box2D.Dynamics.b2Body,
+    b2BodyDef: Box2D.Dynamics.b2BodyDef,
+    b2Vec2: Box2D.Common.Math.b2Vec2
 };

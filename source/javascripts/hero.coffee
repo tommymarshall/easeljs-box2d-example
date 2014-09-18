@@ -3,15 +3,20 @@ config   = require './config'
 keys     = require './keys'
 createjs = require 'createjs'
 Reality  = require './reality'
+Entity   = require './entity'
 
-class Hero
+class Hero extends Entity
 	# Some Constants
 	MAX_SPEED    : 22
 	JUMP_TIMEOUT : 1000 # 1 second
 	JUMP_HEIGHT  : 245
 	HERO_RADIUS  : 50
 
-	constructor: ->
+	constructor: (options) ->
+		@type    = 'hero';
+
+		@options = options
+
 		# Set our Hero controls initially to false
 		@controls =
 			jumping  : false
@@ -28,6 +33,8 @@ class Hero
 
 		# Set up movement and controls
 		@assignControls()
+
+		super
 
 	createHero: =>
 		# Define Fixture
@@ -58,6 +65,9 @@ class Hero
 		# Registers certain callbacks when this
 		# body is colliding with another
 		@bodyDef.isSensor = true
+
+		# Set some specific data for this platform
+		@bodyDef.userData = @
 
 		# Add to World
 		@body = Reality.world.CreateBody( @bodyDef )
@@ -116,6 +126,9 @@ class Hero
 				@controls.right = false
 			when keys.SPACEBAR, keys.W, keys.UP
 				@controls.jumping = false
+
+	hit: =>
+		console.log 'hit hero'
 
 	onGround: =>
 		# If our Hero body is making contact

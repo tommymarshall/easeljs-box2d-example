@@ -6,6 +6,7 @@ Stats    = require 'stats'
 # and Stage. Once they are called here
 # all subsequent require's will use
 # that instance.
+Detector = require './detector'
 Reality  = require './reality'
 Scene    = require './scene'
 Stage    = require './stage'
@@ -22,11 +23,23 @@ class Game
 
 		@setupStats() if config.SHOW_FPS
 
+		Detector.addContactListener
+			BeginContact: (idA, idB) ->
+			PostSolve: (idA, idB, impulse) ->
+				if impulse < 0.1 then return
+
+				if idA.type == 'platform' then idA.destroy()
+
+				# entityA.hit(impulse, entityB)
+				# entityB.hit(impulse, entityA)
+
 	bindEvents: =>
 		# Pause when window is blurred
 		window.addEventListener 'blur', @setPaused
+
 		# Play when window is focused
 		window.addEventListener 'focus', @setPlay
+
 		# Toggle showing/hiding of the Debug <canvas>
 		document.getElementById('toggle-debug').onclick = @toggleDebug
 

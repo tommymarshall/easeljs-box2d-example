@@ -2,11 +2,14 @@ box2d    = require './vendor/box2d'
 config   = require './config'
 createjs = require 'createjs'
 Reality  = require './reality'
+Entity   = require './entity'
 
-class Platform
+class Platform extends Entity
 	# Fires upon instantiation, ie:
 	#   var thing = new Platform(options)
 	constructor: (options) ->
+		@type = 'platform';
+
 		@options = options
 		@vertex     = []
 
@@ -30,6 +33,9 @@ class Platform
 			vector.Set( (coords[i][0] / config.SCALE), (coords[i][1] / config.SCALE) )
 
 			@vertex.push vector
+
+	hit: =>
+		console.log 'hit platform'
 
 	createFixtureDefinition: =>
 		# Creates a new Box2D Fixture definition
@@ -67,7 +73,7 @@ class Platform
 		@bodyDef.position.Set(@options.x / config.SCALE, @options.y / config.SCALE)
 
 		# Set some specific data for this platform
-		@bodyDef.userData = @options.id
+		@bodyDef.userData = @
 
 	createBox2DBody: =>
 		# We create a @body that will be added to our

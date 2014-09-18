@@ -37,7 +37,7 @@ class Scene
 	createPlatforms: (number) =>
 		# Creates a given number of platforms
 		for i in [1..number]
-			dimensions =
+			options =
 				id     : 'platform_' + i
 				x      : i * (7000 / number) # Evenly spaced out horizontally
 				y      : randInt(150, 500)
@@ -45,18 +45,22 @@ class Scene
 				height : 8
 
 			# Creates a new Platform with given
-			# dimensions and adds them to our
+			# options and adds them to our
 			# @platforms array
-			@platforms.push new Platform dimensions
+			@platforms.push new Platform options
 
 		# Adds each of our platforms to the Stage
 		for platform in @platforms
 			Stage.add platform
+			Stage.remove platform
 
 	createHero: =>
 		# Creates a new Hero instance and adds
 		# him to our stage
-		@hero = new Hero
+		options =
+			id: 'hero'
+
+		@hero = new Hero(options)
 		Stage.add @hero
 
 		# Moves our hero to the starting position
