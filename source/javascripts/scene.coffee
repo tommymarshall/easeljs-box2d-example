@@ -52,7 +52,6 @@ class Scene
 		# Adds each of our platforms to the Stage
 		for platform in @platforms
 			Stage.add platform
-			Stage.remove platform
 
 	createHero: =>
 		# Creates a new Hero instance and adds

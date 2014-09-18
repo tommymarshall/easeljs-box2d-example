@@ -24,14 +24,11 @@ class Game
 		@setupStats() if config.SHOW_FPS
 
 		Detector.addContactListener
-			BeginContact: (idA, idB) ->
-			PostSolve: (idA, idB, impulse) ->
+			BeginContact: (thing, hero) ->
+			PostSolve: (thing, hero, impulse) ->
 				if impulse < 0.1 then return
 
-				if idA.type == 'platform' then idA.destroy()
-
-				# entityA.hit(impulse, entityB)
-				# entityB.hit(impulse, entityA)
+				if thing.type == 'platform' then Stage.remove(hero)
 
 	bindEvents: =>
 		# Pause when window is blurred

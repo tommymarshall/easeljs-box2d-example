@@ -8,6 +8,8 @@ class Stage
 		# Array of bodies currently on stage
 		@bodies = {}
 
+		@bodiesToBeRemoved = []
+
 		@createStage()
 
 	createStage: =>
@@ -23,9 +25,8 @@ class Stage
 		@stage.x = -entity.view.x + config.WIDTH * 0.3
 		@stage.y = -entity.view.y + config.HEIGHT * 0.6
 
-	remove: (id) =>
-		if @bodies[id] then @stage.removeChild @bodies[id].view
-		delete @bodies[id]
+	remove: (entity) =>
+		@bodiesToBeRemoved.push entity
 
 	add: (entity) =>
 		# Adds a given entity's view to the Stage
@@ -37,7 +38,19 @@ class Stage
 		# the event to our entity.update handler
 		createjs.Ticker.on 'tick', entity.update if entity.update
 
+	cleanUp: =>
+		i = 0
+
+		while i < @bodiesToBeRemoved.length
+			@bodiesToBeRemoved[i].destroy()
+			i++
+
+		@bodiesToBeRemoved = []
+
 	update: (e) =>
+		# Remove bodies that should be removed
+		@cleanUp()
+
 		# Updates our stage with whatever
 		# views are currently on it
 		@stage.update(e)

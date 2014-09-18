@@ -6,12 +6,13 @@ Reality  = require './reality'
 Stage    = require './stage'
 
 class Entity
-	destroy: =>
-		# Destroy entity body if exists
+    destroy: =>
+        id = @options.id
 
-		Reality.world.DestroyBody(@body)
+        if Stage.bodies[id] then Stage.stage.removeChild @view
 
-		# Remove the View from the stage
-		Stage.remove @options.id
+        delete Stage.bodies[id]
+
+        Reality.world.DestroyBody @body
 
 module.exports = Entity

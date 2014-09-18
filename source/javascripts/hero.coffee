@@ -13,9 +13,11 @@ class Hero extends Entity
 	HERO_RADIUS  : 50
 
 	constructor: (options) ->
-		@type    = 'hero';
+		@type    = 'hero'
 
 		@options = options
+
+		@shouldBeDestroyed = false
 
 		# Set our Hero controls initially to false
 		@controls =
@@ -126,9 +128,6 @@ class Hero extends Entity
 				@controls.right = false
 			when keys.SPACEBAR, keys.W, keys.UP
 				@controls.jumping = false
-
-	hit: =>
-		console.log 'hit hero'
 
 	onGround: =>
 		# If our Hero body is making contact
