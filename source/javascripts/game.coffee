@@ -24,11 +24,18 @@ class Game
 		@setupStats() if config.SHOW_FPS
 
 		Detector.addContactListener
-			BeginContact: (thing, hero) ->
-			PostSolve: (thing, hero, impulse) ->
+			# Before Box2d calculates how the
+			#objects should reschrpond to eachother
+			BeginContact: (thingA, thingB, impulse) ->
 				if impulse < 0.1 then return
 
-				if thing.type == 'platform' then Stage.remove(hero)
+				# Collides with Coin
+				if thingA.type is 'hero' and thingB.type is 'coin' then Stage.remove(thingB)
+
+			# Gets called after all the phyics
+			# should be applied
+			PostSolve: (thingA, thingB, impulse) ->
+				if impulse < 0.1 then return
 
 	bindEvents: =>
 		# Pause when window is blurred

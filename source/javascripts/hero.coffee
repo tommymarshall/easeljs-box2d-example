@@ -131,9 +131,9 @@ class Hero extends Entity
 
 	onGround: =>
 		# If our Hero body is making contact
-		# with another body, let him jump
+		# with a platform, let him jump
 		contacts = @body.GetContactList()
-		contacts and contacts.contact.IsTouching()
+		contacts and contacts.contact.IsTouching() and contacts.other and contacts.other.GetUserData().type == 'platform'
 
 	jumpTimePassed: =>
 		# At least the @JUMP_TIMEOUT value has

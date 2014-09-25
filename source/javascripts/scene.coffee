@@ -3,6 +3,7 @@ config   = require './config'
 createjs = require 'createjs'
 Hero     = require './hero'
 Platform = require './platform'
+Coin     = require './coin'
 Reality  = require './reality'
 Stage    = require './stage'
 
@@ -16,9 +17,11 @@ randInt = (lower, upper) ->
 class Scene
 	constructor: ->
 		@platforms = []
+		@coins = []
 
 		@createGround()
 		@createPlatforms(10)
+		@createCoins(10)
 		@createHero()
 
 	createGround: =>
@@ -52,6 +55,24 @@ class Scene
 		# Adds each of our platforms to the Stage
 		for platform in @platforms
 			Stage.add platform
+
+	createCoins: (number) =>
+		# Creates a given number of platforms
+		for i in [1..number]
+			options =
+				id     : 'coins_' + i
+				x      : i * (7000 / number) # Evenly spaced out horizontally
+				y      : randInt(150, 500)
+				radius  : randInt(25, 50)
+
+			# Creates a new Coin with given
+			# options and adds them to our
+			# @coins array
+			@coins.push new Coin options
+
+		# Adds each of our coins to the Stage
+		for coin in @coins
+			Stage.add coin
 
 	createHero: =>
 		# Creates a new Hero instance and adds
