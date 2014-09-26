@@ -1,7 +1,7 @@
 Reality = require './reality'
 box2d   = require './vendor/box2d'
 
-class Detector
+class Contacter
 	addContactListener: (callbacks) =>
 		listener = new box2d.b2ContactListener
 
@@ -19,4 +19,4 @@ class Detector
 
 		Reality.world.SetContactListener(listener)
 
-module.exports = new Detector
+module.exports = new Contacter

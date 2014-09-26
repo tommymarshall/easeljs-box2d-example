@@ -6,10 +6,10 @@ Stats    = require 'stats'
 # and Stage. Once they are called here
 # all subsequent require's will use
 # that instance.
-Detector = require './detector'
-Reality  = require './reality'
-Scene    = require './scene'
-Stage    = require './stage'
+Contacter = require './contacter'
+Reality   = require './reality'
+Scene     = require './scene'
+Stage     = require './stage'
 
 class Game
 	constructor: ->
@@ -23,17 +23,19 @@ class Game
 
 		@setupStats() if config.SHOW_FPS
 
-		Detector.addContactListener
+		Contacter.addContactListener
 			# Before Box2d calculates how the
-			#objects should reschrpond to eachother
+			# objects should respond to eachother
 			BeginContact: (thingA, thingB, impulse) ->
 				if impulse < 0.1 then return
 
 				# Collides with Coin
 				if thingA.type is 'hero' and thingB.type is 'coin' then Stage.remove(thingB)
 
-			# Gets called after all the phyics
-			# should be applied
+			# Gets called after default phyics are applied.
+			# Notice, if the object our hero is colliding with
+			# is a sensor, then there would be no Physics to
+			# solves and this would never fire
 			PostSolve: (thingA, thingB, impulse) ->
 				if impulse < 0.1 then return
 

@@ -9,6 +9,7 @@ class Coin extends Entity
 	#   var thing = new Coin(options)
 	constructor: (options) ->
 		@type = 'coin';
+		@angle = 0;
 
 		@options = options
 
@@ -20,10 +21,10 @@ class Coin extends Entity
 		# Creates a new Box2D Fixture definition
 		@fixtureDef = new box2d.b2FixtureDef
 
-		@fixtureDef.density     = 0
-		@fixtureDef.friction    = 0
-		@fixtureDef.restitution = 0
-		@fixtureDef.isSensor    = true
+		# Acts as simply a sensor, if this were
+		# false then we the physics for colliding
+		# with this object would be applied
+		@fixtureDef.isSensor = true
 
 		# Define the shape, which will be a Polygon
 		@fixtureDef.shape = new box2d.b2CircleShape( @options.radius / config.SCALE )
@@ -59,6 +60,17 @@ class Coin extends Entity
 
 		# Creates a rectangle with a given fill color
 		# and options which match our Fixture
-		@view.graphics.beginFill('#f00').drawCircle(@options.x, @options.y, @options.radius)
+		@view.graphics.beginFill('#f00').drawCircle(0, 0, @options.radius)
+
+		@view.x = @options.x
+		@view.y = @options.y
+
+	update: (e) =>
+		# Return if game currently paused
+		return if e.paused
+
+		@angle += 0.1
+
+		@view.scaleX = Math.sin(@angle)
 
 module.exports = Coin
